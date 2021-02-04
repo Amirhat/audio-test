@@ -13,8 +13,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-          <Link>
-              <a href={'./test1'}> test 1</a>
+          <Link href={"./test1"}>
+              <a> test 1</a>
           </Link>
       </main>
 
