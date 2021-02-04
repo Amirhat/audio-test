@@ -1,10 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import dynamic from 'next/dynamic'
+import Link from 'next/link'
 
-const DynamicComponentWithNoSSR = dynamic(() => import('../components/Dyna'), {
-    ssr: false
-})
 
 
 export default function Home() {
@@ -20,7 +17,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-          <DynamicComponentWithNoSSR />
+          <Link>
+              <a href={'./test1'}> test 1</a>
+          </Link>
       </main>
 
       <footer className={styles.footer}>
