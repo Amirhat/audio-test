@@ -147,7 +147,7 @@ export default () => {
         pos++;
         element.style.left = `${pos}px`;
       }
-    }, 200);
+    }, 245);
   };
   const pauseMoving = () => {
    clearInterval(intervalID);
