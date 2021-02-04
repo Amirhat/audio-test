@@ -1,5 +1,8 @@
+import React, { useState, useEffect } from 'react';
+
 export default () => {
     // Set up audio context
+
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     const audioContext = new AudioContext();
     let currentBuffer = null;
@@ -10,9 +13,21 @@ export default () => {
 
     const visualizeAudio = url => {
         fetch(url)
-            .then(response => response.arrayBuffer())
-            .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-            .then(audioBuffer => (audioBuffer));
+            .then(response => {
+                const out = response.arrayBuffer();
+                console.log(out)
+                return out
+            })
+            .then(arrayBuffer => {
+                const out = audioContext.decodeAudioData(arrayBuffer)
+                console.log(out)
+                return out
+                })
+            .then(audioBuffer => {
+                const out = audioBuffer
+                console.log(out)
+                return visualize(out)
+            });
     };
 
     const filterData = audioBuffer => {
@@ -28,12 +43,15 @@ export default () => {
             }
             filteredData.push(sum / blockSize); // divide the sum by the block size to get the average
         }
+        console.log("filteredData is:", filteredData)
         return filteredData;
     }
 
     const normalizeData = filteredData => {
         const multiplier = Math.pow(Math.max(...filteredData), -1);
-        return filteredData.map(n => n * multiplier);
+        const normalizedData = filteredData.map(n => n * multiplier)
+        console.log("normalizedData is:", normalizedData)
+        return normalizedData;
     }
     const draw = normalizedData => {
         // Set up the canvas
@@ -73,8 +91,9 @@ export default () => {
         ctx.stroke();
     };
 
-    visualizeAudio(`/test.mp3`)
-
+    useEffect(() => {
+        visualizeAudio(`/test.mp3`)
+    },[])
 
 
     return  (
