@@ -135,16 +135,25 @@ export default () => {
     //visualizeAudio(`/test.mp3`)
     visualizeAudio("test2.mp3");
   }, []);
+
+  let audio = new Audio("test2.mp3");
   const playAudio = () => {
-    let audio = new Audio("test2.mp3");
     audio.play();
   };
-
+const pauseAudio =() =>{
+    audio.pause();
+}
+const stopAudio =() => {
+  audio.pause();
+  audio.currentTime = 0;
+}
   return (
     <div>
       <p>this is a dyna 2</p>
       <canvas></canvas>
       <button onClick={playAudio}>Play</button>
+      <button onClick={stopAudio}>Stop</button>
+      <button onClick={pauseAudio}>Pause</button>
     </div>
   );
 };
