@@ -24,3 +24,22 @@ a {
 * {
   box-sizing: border-box;
 }
+.canvasContainer {
+  position: relative;
+}
+.firstLayer{
+  position: absolute; 
+  left: 0;
+  top: 0; 
+  z-index: 0;
+}
+.secondLayer{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+#DemoCanvas{
+  position: absolute;
+ transition: all 1.5s;
+}

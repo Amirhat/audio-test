@@ -5,7 +5,6 @@ export default () => {
 
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   const audioContext = new AudioContext();
-  let currentBuffer = null;
 
   const visualize = (audioBuffer) => {
     // draw(normalizeData(filterData(audioBuffer)))
@@ -136,24 +135,64 @@ export default () => {
     visualizeAudio("test2.mp3");
   }, []);
 
+  let intervalID = null;
+  let pos = 0;
+  let element = null;
+  const startMoving = () => {
+    element = document.getElementById("DemoCanvas");
+    intervalID = window.setInterval(() => {
+      if (pos == 798) {
+        clearInterval(intervalID);
+      } else {
+        pos++;
+        element.style.left = `${pos}px`;
+      }
+    }, 200);
+  };
+  const pauseMoving = () => {
+   clearInterval(intervalID);
+  };
+const stopMoving = ()=>{
+  element.style.left = 0;
+  pos = 0;
+  clearInterval(intervalID);
+}
   let audio = new Audio("test2.mp3");
   const playAudio = () => {
     audio.play();
+    startMoving();
   };
-const pauseAudio =() =>{
+  const pauseAudio = () => {
     audio.pause();
-}
-const stopAudio =() => {
-  audio.pause();
-  audio.currentTime = 0;
-}
+    pauseMoving();
+  };
+  const stopAudio = () => {
+    audio.pause();
+    audio.currentTime = 0;
+    stopMoving();
+  };
+
   return (
     <div>
       <p>this is a dyna 2</p>
-      <canvas></canvas>
-      <button onClick={playAudio}>Play</button>
-      <button onClick={stopAudio}>Stop</button>
-      <button onClick={pauseAudio}>Pause</button>
+
+      <div>
+        <button onClick={playAudio}>Play</button>
+        <button onClick={stopAudio}>Stop</button>
+        <button onClick={pauseAudio}>Pause</button>
+      </div>
+
+      <div className="canvasContainer">
+        <canvas className="firstLayer"></canvas>
+        <svg width="10" height="163" className="secondLayer" id="DemoCanvas">
+          <path
+            d="M 0 32 V 163"
+            strokeWidth="2"
+            stroke="yellow"
+            fill="yellow"
+          ></path>
+        </svg>
+      </div>
     </div>
   );
 };
