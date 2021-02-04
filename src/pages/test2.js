@@ -5,7 +5,7 @@ const DynamicComponentWithNoSSR = dynamic(() => import('../components/Dyna2'), {
 })
 
 
-export default function test1() {
+export default function test2() {
     return (
         <div>
             <DynamicComponentWithNoSSR />
