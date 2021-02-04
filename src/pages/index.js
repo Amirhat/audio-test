@@ -17,6 +17,11 @@ export default function Home() {
               <a> test 1</a>
           </Link>
       </main>
+      <main className={styles.main}>
+          <Link href={"./test2"}>
+              <a> test 2</a>
+          </Link>
+      </main>
 
       <footer className={styles.footer}>
 
