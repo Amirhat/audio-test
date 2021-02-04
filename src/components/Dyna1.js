@@ -3,5 +3,12 @@ export default () => {
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
     const audioContext = new AudioContext();
     let currentBuffer = null;
+    return  (
+        <div>
+            <p>
+                this is a dyna 1
+            </p>
+        </div>
+    )
 
 }
