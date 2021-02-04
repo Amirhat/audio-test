@@ -5,10 +5,6 @@ import Link from 'next/link'
 
 
 export default function Home() {
-    // Set up audio context
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-    const audioContext = new AudioContext();
-    let currentBuffer = null;
   return (
     <div className={styles.container}>
       <Head>
